@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para Maria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<noscript><style>#intro{display:none}</style></noscript>
+<style>
+:root{--bg:#060204;--ink:#f4e6e3;--mute:#c9a5a8;--rose:#e8a4a8;--wine:#7a1530;--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;--sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+#wash{position:fixed;inset:0;z-index:0;pointer-events:none}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+#bar{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 0;transform:scaleX(0);background:linear-gradient(90deg,var(--wine),var(--rose));z-index:60}
+#glow{position:fixed;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;background:radial-gradient(circle,rgba(232,164,168,.16),transparent 65%);z-index:2;pointer-events:none;opacity:0;transition:opacity .6s}
+main{position:relative;z-index:3}
+section{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14vh 7vw;text-align:center}
+.kicker{font-family:var(--sans);font-weight:300;font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--rose);margin:0 0 2.2rem}
+.big{font-size:clamp(1.7rem,4.6vw,3.3rem);font-weight:300;line-height:1.3;max-width:20em;margin:0}
+.big em,.decl em{font-style:italic;color:var(--rose);font-weight:500}
+.rv{will-change:transform,opacity}
+.js .rv{opacity:0;transform:translate3d(var(--x,0),var(--y,34px),0);filter:blur(6px);transition:opacity 1.5s cubic-bezier(.2,.7,.2,1) var(--t,0s),transform 1.5s cubic-bezier(.2,.7,.2,1) var(--t,0s),filter 1.5s var(--t,0s)}
+.js .rv.in{opacity:1;transform:none;filter:none}
+.w{display:inline-block;white-space:pre}
+.js .w{opacity:0;transform:translateY(.55em);filter:blur(5px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1),filter 1s}
+.js .ws.in .w{opacity:1;transform:none;filter:none}
+.name{font-size:clamp(5rem,26vw,16rem);font-weight:300;font-style:italic;line-height:1;margin:0;letter-spacing:.02em;background:linear-gradient(180deg,#fbe9e6,var(--rose) 55%,var(--wine));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lines{display:grid;gap:clamp(2rem,6vh,4rem);margin-top:4rem;max-width:30em}
+.lines p{margin:0;font-size:clamp(1.3rem,3.4vw,2.1rem);font-weight:300;font-style:italic;color:#f0d9d6}
+.px{will-change:transform}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.deep{background:linear-gradient(180deg,transparent,rgba(0,0,0,.55) 30%,rgba(0,0,0,.55) 70%,transparent)}
+.deep .big{margin-bottom:5.5rem}
+.tall{height:320vh;min-height:0;padding:0;display:block}
+.stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#hc{position:absolute;inset:0;width:100%;height:100%}
+.stick .kicker{position:absolute;top:9vh;left:0;right:0}
+.ph{position:absolute;left:7vw;right:7vw;bottom:11vh;height:3.4rem}
+.ph p{position:absolute;inset:0;margin:0;font-size:clamp(1.3rem,3.6vw,2.2rem);font-style:italic;font-weight:300;opacity:0}
+.decl{font-size:clamp(1.35rem,3.5vw,2.45rem);line-height:1.5;font-weight:300;max-width:24em;margin:0}
+.line{width:1px;height:12vh;background:linear-gradient(var(--rose),transparent);margin:0 auto 3rem;transform-origin:top;transform:scaleY(0);transition:transform 2s ease}
+.line.in{transform:scaleY(1)}
+.halo{position:absolute;left:50%;top:50%;width:min(110vw,900px);aspect-ratio:1;margin:calc(min(110vw,900px)/-2) 0 0 calc(min(110vw,900px)/-2);border-radius:50%;background:radial-gradient(circle,rgba(180,40,70,.28),rgba(90,10,30,.12) 45%,transparent 68%);pointer-events:none}
+.btn{position:relative;overflow:hidden;font-family:var(--sans);font-weight:300;font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);background:rgba(122,21,48,.25);border:1px solid rgba(232,164,168,.5);padding:1.1rem 2.4rem;border-radius:999px;cursor:pointer;transition:transform .4s,box-shadow .5s,background .5s}
+.btn:hover,.btn:focus-visible{transform:translateY(-2px) scale(1.03);box-shadow:0 0 34px rgba(232,164,168,.35);background:rgba(122,21,48,.5);outline:none}
+.btn:active{transform:scale(.97)}
+#answer{max-width:22em;margin-top:2rem;opacity:0;transform:translateY(20px);transition:opacity 2.4s ease,transform 2.4s ease;pointer-events:none;position:absolute}
+#answer.in{opacity:1;transform:none;position:static;pointer-events:auto}
+#answer p{font-size:clamp(1.6rem,4.4vw,2.8rem);font-style:italic;font-weight:300;line-height:1.35;margin:0}
+.fade{transition:opacity 1s ease,transform 1s ease}
+.fade.gone{opacity:0;transform:scale(.96);pointer-events:none;position:absolute}
+#intro{position:fixed;inset:0;z-index:50;background:radial-gradient(ellipse at 50% 40%,#2a0814,#060204 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7vw;text-align:center;transition:opacity 1.8s ease,visibility 1.8s}
+#intro.out{opacity:0;visibility:hidden}
+#intro .name{display:flex}
+.l{display:inline-block;opacity:0;transform:translateY(.3em);filter:blur(14px);animation:lt 2s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(.5s + var(--i)*.22s)}
+@keyframes lt{to{opacity:1;transform:none;filter:none}}
+.i2,.i3{opacity:0;animation:fi 2s ease forwards}
+.i2{font-size:clamp(1.2rem,3.4vw,2rem);font-style:italic;font-weight:300;max-width:22em;margin:1.2rem 0 3rem;animation-delay:2.4s}
+.i3{animation-delay:3.8s}
+@keyframes fi{to{opacity:1}}
+#snd{position:fixed;right:max(1rem,env(safe-area-inset-right,0px));bottom:max(1rem,env(safe-area-inset-bottom,0px));z-index:55;font-family:var(--sans);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mute);background:rgba(6,2,4,.55);border:1px solid rgba(232,164,168,.3);padding:.7rem 1.1rem;border-radius:999px;cursor:pointer;backdrop-filter:blur(6px)}
+#snd[aria-pressed=true]{color:var(--ink);border-color:var(--rose)}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.js .rv,.js .w,.l,.i2,.i3,.line{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
+.ph{height:auto;display:grid;gap:1rem}.ph p{position:static;opacity:1!important}
+.tall{height:auto}.stick{position:relative;height:100vh}
+}
+</style>
+</head>
+<body class="lock">
+<div id="wash"></div><canvas id="bg" aria-hidden="true"></canvas><div id="glow"></div><div id="bar"></div>
+
+<div id="intro">
+  <h1 class="name" aria-label="Maria"><span class="l" style="--i:0">M</span><span class="l" style="--i:1">a</span><span class="l" style="--i:2">r</span><span class="l" style="--i:3">i</span><span class="l" style="--i:4">a</span></h1>
+  <p class="i2">Maria, existe algo que eu gostaria que você soubesse…</p>
+  <button class="btn i3" id="go">Tenho algo para te mostrar</button>
+</div>
+
+<main>
+  <section id="c1">
+    <p class="kicker rv">Capítulo I · O início</p>
+    <p class="big ws">Engraçado como algumas pessoas chegam à nossa vida e, sem perceber, começam a ocupar um espaço tão bonito dentro dela.</p>
+  </section>
+
+  <section id="c2">
+    <div class="orb px" data-p=".18" style="width:46vw;height:46vw;left:-12vw;top:10%;background:rgba(150,30,60,.35)"></div>
+    <p class="kicker rv">Capítulo II · Sobre ela</p>
+    <div class="px" data-p=".08"><h2 class="name rv" style="--y:60px">Maria</h2></div>
+    <div class="lines">
+      <p class="rv" style="--x:-70px;--y:0px">Tem algo em você que é difícil explicar.</p>
+      <p class="rv" style="--x:70px;--y:0px">Seu jeito, seu sorriso e até os pequenos detalhes fazem diferença.</p>
+      <p class="rv" style="--x:0px;--y:60px">Talvez você nem imagine o quanto consegue tornar um momento especial.</p>
+    </div>
+  </section>
+
+  <section id="c3" class="deep">
+    <p class="kicker rv">Capítulo III · O que eu sinto</p>
+    <p class="big ws">Eu poderia tentar encontrar as palavras perfeitas para explicar o que sinto, mas talvez nenhuma delas fosse suficiente.</p>
+    <p class="big ws" style="margin-top:6rem">Às vezes, tudo o que consigo pensar é no quanto é bom ter você como alguém <em>especial</em> nos meus pensamentos.</p>
+  </section>
+
+  <section id="c4" class="tall">
+    <div class="stick">
+      <p class="kicker">Capítulo IV · Uma luz só sua</p>
+      <canvas id="hc" role="img" aria-label="Um coração formado por pontos de luz"></canvas>
+      <div class="ph">
+        <p>Alguns sentimentos não cabem em palavras.</p>
+        <p>Eles se acendem devagar.</p>
+        <p>E ficam.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="c5">
+    <div class="halo px" data-p=".1"></div>
+    <div class="line"></div>
+    <p class="kicker rv">Capítulo V · A declaração</p>
+    <p class="decl ws">Maria, talvez você não tenha ideia do quanto é especial para mim. Mas hoje eu queria encontrar uma maneira diferente de demonstrar isso. Não sei exatamente o que o futuro reserva, mas sei que <em>conhecer você tornou meus dias mais especiais</em>. E, se existe algo que eu gostaria que você nunca esquecesse, é que você é alguém que <em>merece ser admirada, valorizada e tratada com todo o carinho do mundo</em>.</p>
+  </section>
+
+  <section id="c6">
+    <div id="ask" class="fade">
+      <p class="big ws" style="margin-bottom:3rem">E depois de tudo isso, Maria, só queria te perguntar uma coisa…</p>
+      <button class="btn rv" id="more" style="--t:1.6s">Continuar…</button>
+    </div>
+    <div id="answer"><p id="ans"></p></div>
+  </section>
+</main>
+
+<button id="snd" aria-pressed="false">♪ Som</button>
+
+<script>
+/* ===== PERSONALIZE AQUI ===== */
+const CFG = {
+  final: "Respire fundo. O resto eu quero te dizer pessoalmente."
+};
+/* ============================ */
+document.documentElement.classList.add("js");
+const R = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const clamp = (v,a=0,b=1) => Math.min(b,Math.max(a,v));
+const ease = x => x*x*(3-2*x);
+
+/* palavras progressivas */
+$$(".ws").forEach(el => { let i = 0;
+  (function walk(n){ [...n.childNodes].forEach(c => {
+    if (c.nodeType === 3) { const f = document.createDocumentFragment();
+      c.textContent.split(/(\s+)/).forEach(t => { if (!t.trim()) { f.append(" "); return; }
+        const s = document.createElement("span"); s.className = "w"; s.textContent = t; s.style.transitionDelay = (i++*45)+"ms"; f.append(s); });
+      c.replaceWith(f); } else walk(c); }); })(el);
+});
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.3});
+$$(".rv,.ws,.line").forEach(e => io.observe(e));
+
+/* partículas globais */
+const bg = $("#bg"), bx = bg.getContext("2d"); let W, H, D = Math.min(devicePixelRatio||1,2);
+const small = innerWidth < 700, P = [];
+function size(){ W = bg.width = innerWidth*D; H = bg.height = innerHeight*D; }
+size(); addEventListener("resize", size);
+for (let i=0;i<(small?42:80);i++) P.push({x:Math.random(),y:Math.random(),z:.25+Math.random()*.75,ph:Math.random()*6.28,h:Math.random()<.1});
+function heartPath(c,x,y,s){ c.beginPath(); c.moveTo(x,y+s*.35); c.bezierCurveTo(x-s,y-s*.3,x-s*.5,y-s*1.1,x,y-s*.5); c.bezierCurveTo(x+s*.5,y-s*1.1,x+s,y-s*.3,x,y+s*.35); c.fill(); }
+function drawBg(t,sy){
+  bx.clearRect(0,0,W,H); bx.globalCompositeOperation = "lighter";
+  for (const p of P) {
+    const y = ((p.y - (R?0:sy*p.z*.00022) - (R?0:t*.000012*p.z)) % 1 + 1) % 1;
+    const x = p.x + (R?0:Math.sin(t*.0004+p.ph)*.012);
+    const a = (.25+.55*(.5+.5*Math.sin(t*.0012+p.ph)))*p.z;
+    bx.fillStyle = `rgba(240,170,175,${a})`;
+    if (p.h) heartPath(bx,x*W,y*H,(5+p.z*5)*D); else { bx.beginPath(); bx.arc(x*W,y*H,p.z*2.1*D,0,6.283); bx.fill(); }
+  }
+}
+
+/* coração de partículas */
+const hc = $("#hc"), hx = hc.getContext("2d"), sec4 = $("#c4"); let hw, hh, vis4 = false;
+const NH = small ? 520 : 1000, HP = [];
+for (let i=0;i<NH;i++) { const t = Math.random()*6.283, k = Math.random()<.6 ? 1 : Math.random()*.92;
+  HP.push({tx:16*Math.pow(Math.sin(t),3)*k, ty:-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*k, sx:Math.random(), sy:Math.random(), d:Math.random(), r:.6+Math.random()*1.5, ph:Math.random()*6.28}); }
+function sizeH(){ hw = hc.width = hc.clientWidth*D; hh = hc.height = hc.clientHeight*D; }
+sizeH(); addEventListener("resize", sizeH);
+new IntersectionObserver(e => vis4 = e[0].isIntersecting).observe(sec4);
+const phs = $$(".ph p"), rng = [[.1,.38],[.38,.64],[.64,.98]];
+function drawHeart(t){
+  const r = sec4.getBoundingClientRect(), p = R ? 1 : clamp(-r.top/(r.height-innerHeight));
+  const sc = Math.min(hw/36, hh*.5/30), pulse = 1 + (R?0:.03*Math.sin(t*.0022))*ease(clamp(p/.5));
+  hx.clearRect(0,0,hw,hh); hx.globalCompositeOperation = "lighter";
+  for (const q of HP) {
+    const k = ease(clamp(p/.5*1.5 - q.d*.5));
+    const hxp = hw/2 + q.tx*sc*pulse, hyp = hh*.46 + q.ty*sc*pulse;
+    const sx = q.sx*hw + (R?0:Math.sin(t*.0006+q.ph)*14*D), sy = q.sy*hh + (R?0:Math.cos(t*.0005+q.ph)*14*D);
+    const x = sx+(hxp-sx)*k + (R?0:Math.sin(t*.001+q.ph)*2*D*k), y = sy+(hyp-sy)*k;
+    hx.fillStyle = `rgba(255,${150+q.d*40|0},${165+q.d*30|0},${.35+.55*k*(.6+.4*Math.sin(t*.002+q.ph))})`;
+    hx.beginPath(); hx.arc(x,y,q.r*D*(1+k*.4),0,6.283); hx.fill();
+  }
+  if (!R) phs.forEach((el,i) => { const [a,b] = rng[i]; el.style.opacity = clamp(Math.min((p-a)/.06,(b-p)/.06)); el.style.transform = `translateY(${(1-clamp((p-a)/.1))*14}px)`; el.style.textAlign = "center"; });
+}
+
+/* cores conforme a rolagem */
+const wash = $("#wash"), bar = $("#bar"), glow = $("#glow");
+const stops = [[34,6,16],[54,8,24],[14,3,9],[70,10,30],[44,6,20],[22,4,12]];
+function frame(t){
+  const sy = scrollY, max = document.documentElement.scrollHeight - innerHeight, pr = max>0 ? clamp(sy/max) : 0;
+  bar.style.transform = `scaleX(${pr})`;
+  const f = pr*(stops.length-1), i = Math.min(stops.length-2,f|0), m = f-i;
+  const c = stops[i].map((v,j) => v+(stops[i+1][j]-v)*m|0);
+  wash.style.background = `radial-gradient(ellipse at 50% 35%, rgb(${c}) 0%, #060204 75%)`;
+  if (!R) $$(".px").forEach(el => { const r = el.getBoundingClientRect(); if (r.bottom<-200||r.top>innerHeight+200) return;
+    el.style.transform = `translate3d(0,${(r.top+r.height/2-innerHeight/2)*-parseFloat(el.dataset.p)}px,0)`; });
+  drawBg(t,sy); if (vis4 || R) drawHeart(t);
+  if (!R) requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+if (R) { addEventListener("scroll", () => requestAnimationFrame(frame), {passive:true}); }
+
+/* brilho do cursor (apenas ponteiro preciso) */
+if (matchMedia("(pointer:fine)").matches && !R) {
+  addEventListener("mousemove", e => { glow.style.opacity = 1; glow.style.transform = `translate(${e.clientX}px,${e.clientY}px)`; glow.style.left = 0; glow.style.top = 0; });
+  document.addEventListener("mouseleave", () => glow.style.opacity = 0);
+}
+
+/* abertura e final */
+$("#go").addEventListener("click", () => {
+  $("#intro").classList.add("out"); document.body.classList.remove("lock"); scrollTo(0,0);
+  setTimeout(() => $("#intro").style.display = "none", 1900);
+});
+$("#more").addEventListener("click", () => {
+  $("#ask").classList.add("gone"); $("#ans").textContent = CFG.final;
+  setTimeout(() => $("#answer").classList.add("in"), 500);
+});
+
+/* trilha suave opcional (gerada no navegador; nunca toca sozinha) */
+let ac, g, on = false;
+$("#snd").addEventListener("click", e => {
+  try {
+    if (!ac) { ac = new (window.AudioContext||window.webkitAudioContext)(); g = ac.createGain(); g.gain.value = 0;
+      const f = ac.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = 700; g.connect(f); f.connect(ac.destination);
+      [110,164.81,220,277.18,329.63].forEach((fr,i) => { const o = ac.createOscillator(), og = ac.createGain(), l = ac.createOscillator(), lg = ac.createGain();
+        o.frequency.value = fr; og.gain.value = .1/(1+i*.3); o.connect(og); og.connect(g); o.start();
+        l.frequency.value = .05+i*.02; lg.gain.value = .04; l.connect(lg); lg.connect(og.gain); l.start(); }); }
+    on = !on; ac.resume(); g.gain.linearRampToValueAtTime(on?.7:0, ac.currentTime+2);
+    e.currentTarget.setAttribute("aria-pressed", on);
+  } catch (err) { console.error(err); }
+});
+</script>
+</body>
+</html>
